@@ -1,4 +1,4 @@
-# 🧠 School Quiz App (Flask-based)
+## 🧠 School Quiz App (Flask-based)
 
 This is a fully functional **web-based quiz application** built using **Python (Flask)** and HTML/CSS/JavaScript. It supports candidate login, CSV-based questions, a countdown timer, scoring, review with ✅❌, and an admin panel with charts and Excel export.
 ---
@@ -67,6 +67,7 @@ http://127.0.0.1:5000/admin_login
 Admin credentials are stored securely (not hard-coded). You can update them manually in the database or extend the login system as needed.
 
 📦 Technologies Used
+```bash
 Python 3
 Flask Web Framework
 SQLite3 Database
@@ -75,7 +76,8 @@ JavaScript (for timer & search)
 Chart.js (for charts)
 pandas (for Excel export)
 
-**🧠** Why This Project?
+## 🧠 Why This Project?
+
 - This project was created to demonstrate:
 - Web development using Flask and templates
 - Managing quiz logic, scoring, and session state
@@ -83,6 +85,7 @@ pandas (for Excel export)
 - Real-time UI interactions with JS
 - Full CRUD control and dashboard design
 **It’s ideal for:**
+
 - Beginner Python/Flask learners
 - Academic evaluations
 - Mini-project submissions
