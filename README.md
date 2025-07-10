@@ -67,7 +67,7 @@ http://127.0.0.1:5000/admin_login
 Admin credentials are stored securely (not hard-coded). You can update them manually in the database or extend the login system as needed.
 
 📦 Technologies Used
-```bash
+
 Python 3
 Flask Web Framework
 SQLite3 Database
