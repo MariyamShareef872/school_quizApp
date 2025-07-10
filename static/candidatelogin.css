@@ -1,0 +1,93 @@
+body.login-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #002244 25%, #f0f0f0 25%, #f0f0f0 50%, #003366 50%, #003366 75%, #ffffff 75%);
+    background-size: 200% 200%;
+    animation: moveBackground 8s linear infinite;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* 🧱 Login Box */
+.login-box {
+    background-color: white;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1;
+}
+
+.login-box h2 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.login-box input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* 🚨 Error message */
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* ▶️ Start Quiz Button */
+.login-box button {
+    background-color: #003366;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #001f3f;
+}
+
+/* 🟦 Floating Animated Squares */
+.animated-square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    animation: floatSquare 18s linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatSquare {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}

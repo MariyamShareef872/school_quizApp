@@ -1,0 +1,59 @@
+body.result-page {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #002244 25%, #f0f0f0 25%, #f0f0f0 50%, #003366 50%, #003366 75%, #ffffff 75%);
+    background-size: 200% 200%;
+    animation: moveBackground 8s linear infinite;
+    height: 100vh;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.result-box {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.result-box h2 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.result-box p {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.status-pass {
+    color: green;
+    font-weight: bold;
+}
+
+.status-fail {
+    color: red;
+    font-weight: bold;
+}
+
+button.review-btn {
+    background-color: #003366;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button.review-btn:hover {
+    background-color: #001f3f;
+}

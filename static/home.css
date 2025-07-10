@@ -1,0 +1,177 @@
+body.home-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #002244 25%, #f0f0f0 25%, #f0f0f0 50%, #003366 50%, #003366 75%, #ffffff 75%);
+    background-size: 200% 200%;
+    animation: moveBackground 10s linear infinite;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.vertical-lines {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+.vertical-line {
+    width: 10px;
+    height: 100vh;
+    margin: 0 5px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(-100vh);
+    animation: slideDownGlow 2.5s ease-out forwards, glowPulse 3s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+/* Vertical Line Colors + Timing */
+.line-grey  { background-color: grey; animation-delay: 0s, 2.5s; }
+.line-black { background-color: black; animation-delay: 0.5s, 3s; }
+.line-blue  { background-color: #003366; animation-delay: 1s, 3.5s; }
+
+/* Animation for vertical slide + fade */
+@keyframes slideDownGlow {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+}
+
+/* GlowPulse already exists — reused here */
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scaleY(1.05);
+    }
+}
+/* Styled Horizontal Line */
+.styled-line {
+    border: none;
+    height: 4px;
+    width: 80%;
+    margin: 20px auto;
+    background: linear-gradient(to right, grey, black, #003366);
+    border-radius: 10px;
+}
+.horizontal-line {
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 70vh;
+    z-index: 0;
+    opacity: 0;
+    animation: slideFadeGlow 2.5s ease-out forwards, glowPulse 3s ease-in-out infinite;
+    transform-origin: left center;
+    border-radius: -5px;
+}
+
+.line-grey  { background-color: grey; animation-delay: 0s, 2.5s; }
+.line-black { background-color: black; animation-delay: 0.5s, 3s; }
+.line-blue  { background-color: #003366; animation-delay: 1s, 3.5s; }
+
+@keyframes slideFadeGlow {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 0.4;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scaleX(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scaleX(1.05);
+    }
+}
+
+.home-container {
+    z-index: 2;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    max-width: 500px;
+    width: 90%;
+}
+
+.home-container h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #003366;
+}
+
+.btn-choice {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin: 15px 0;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-choice:hover {
+    background-color: #001f3f;
+}
+
+/* Floating Squares */
+.animated-square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+    animation: floatSquare 15s linear infinite;
+    z-index: 0;
+    border-radius: 6px;
+}
+
+@keyframes floatSquare {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}

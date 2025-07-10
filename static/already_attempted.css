@@ -1,0 +1,102 @@
+body.attempted-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #002244 25%, #f0f0f0 25%, #cccc 50%, #003366 50%, #003366 75%, #cccc 75%);
+    background-size: 200% 200%;
+    /*animation: moveBackground 10s linear infinite;*/
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Floating Squares */
+.animated-square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    animation: floatSquare 16s linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatSquare {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.2; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+/* Animated Background */
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Vertical Lines */
+.vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.v1 { left: 5%; background: grey; }
+.v2 { left: 10%; background: black; }
+.v3 { left: 15%; background: #007BFF; }
+
+/* Horizontal Lines */
+.horizontal-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.h1 { top: 10%; background: grey; }
+.h2 { top: 15%; background: #003366; }
+
+.attempted-container {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 40px;
+    max-width: 500px;
+    margin: 120px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.attempted-container h2 {
+    color: #cc0000;
+    margin-bottom: 10px;
+}
+
+.attempted-container p {
+    font-size: 18px;
+    color: #333;
+}
+
+.attempted-container .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #003366;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.attempted-container .btn:hover {
+    background-color: #001f3f;
+}

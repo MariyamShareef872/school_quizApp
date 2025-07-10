@@ -1,0 +1,62 @@
+body.review-page {
+    background: linear-gradient(135deg, #002244, #003366, #444, #fff);
+    background-size: 200% 200%;
+    animation: moveBackground 8s linear infinite;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-container {
+    width: 90%;
+    max-width: 900px;
+    height: 90vh;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+.review-box {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.correct-answer {
+    color: #003366;
+    font-weight: bold;
+}
+
+.back-btn {
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+.back-btn a {
+    text-decoration: none;
+    background: #003366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.back-btn a:hover {
+    background: #001f3f;
+}

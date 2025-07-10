@@ -1,0 +1,171 @@
+body.admin-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #003366;
+    color: white;
+    background-size: 200% 200%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+.animated-square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    animation: floatSquare 15s linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatSquare {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.2; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+/* Main Panel */
+.admin-container {
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #222;
+    font-weight: bold;
+}
+
+.admin-panel {
+    width: 100%;
+    max-width: 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+}
+
+.admin-panel h2 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 30px;
+}
+
+/* Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    
+}
+
+.admin-table th, .admin-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-table th {
+    background-color: #003366;
+    color: white;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Buttons */
+.export-btn, .btn-delete-all, .back-btn {
+    margin: 10px 10px 20px 0;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.export-btn {
+    background-color: #003366;
+    color: white;
+}
+
+.export-btn:hover {
+    background-color: #001f3f;
+}
+
+.btn-delete-all {
+    background-color: #880000;
+    color: white;
+}
+
+.btn-delete-all:hover {
+    background-color: #550000;
+}
+
+.back-btn {
+    background-color: #444;
+    color: white;
+}
+
+.back-btn:hover {
+    background-color: #222;
+}
+
+/* Delete Individual */
+.btn-delete {
+    background-color: #cc0000;
+    color: white;
+    padding: 6px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #990000;
+}
+
+/* Top Buttons Container */
+.top-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    border: 2px solid #003366;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.search-box:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+.chart-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+}

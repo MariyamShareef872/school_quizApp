@@ -1,0 +1,126 @@
+body.quiz-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #002244 25%, #f0f0f0 25%, #f0f0f0 50%, #003366 50%, #003366 75%, #ffffff 75%);
+    background-size: 200% 200%;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 🔁 Background animation */
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* 🧱 Centered quiz box */
+.quiz-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 2;
+}
+
+/* 📘 Subject title */
+.subject-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ❓ Questions */
+.question {
+    margin-bottom: 25px;
+    font-size: 18px;
+    color: #222;
+}
+
+.options label {
+    display: block;
+    margin: 8px 0;
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.options label:hover {
+    background-color: #dbeeff;
+}
+
+/* ✅ Submit Button */
+button.submit-btn {
+    background-color: #003366;
+    color: white;
+    font-size: 18px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+    background-color: #001f3f;
+}
+
+/* ⏳ Timer Box */
+.timer-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    font-size: 20px;
+    color: #003366;
+    font-weight: bold;
+    z-index: 10;
+    animation: pulseTimer 2s infinite;
+}
+
+@keyframes pulseTimer {
+    0%, 100% {
+        box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 51, 102, 0.6);
+    }
+}
+
+/* 🌟 Floating Squares (optional) */
+.animated-square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.15;
+    animation: floatSquare 10s linear infinite;
+    z-index: 0;
+    border-radius: 6px;
+}
+
+@keyframes floatSquare {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
