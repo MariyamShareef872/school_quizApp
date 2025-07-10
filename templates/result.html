@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body class="result-page">
+
+    <div class="result-box">
+        <h2>🎉 Quiz Result</h2>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Score:</strong> {{ score }} / 100</p>
+        <p>
+            <strong>Status:</strong>
+            {% if status == 'Selected' %}
+                <span class="status-pass">✅ You are Selected for the next step</span>
+            {% else %}
+                <span class="status-fail">❌ You are Not Selected</span>
+            {% endif %}
+        </p>
+
+        <form action="{{ url_for('review') }}">
+            <button type="submit" class="review-btn">Review Answers</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Candidate Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='candidatelogin.css') }}">
+</head>
+<body class="login-page">
+    <!-- 🔷 Animated Squares -->
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+    <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+    <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+    <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+    <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+
+    <div class="login-box">
+        <h2>👤 Candidate Login</h2>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="name" required style="text-transform: uppercase;">
+            <!--<input type="text" name="name" placeholder="Enter your full name" required> -->
+            <button type="submit" class="btn">Start Quiz 📝</button>
+        </form>
+
+        <a href="/home" class="back-link">⬅️ Back to Home</a>
+    </div>
+</body>
+</html>

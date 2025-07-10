@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-page">
+
+    <!-- Background Design -->
+    <div class="animated-square" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="animated-square" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="animated-square" style="left: 80%; animation-delay: 8s;"></div>
+    <div class="vertical-line v1"></div>
+    <div class="vertical-line v2"></div>
+    <div class="vertical-line v3"></div>
+    <div class="horizontal-line h1"></div>
+    <div class="horizontal-line h2"></div>
+
+    <div class="admin-container">
+        <div class="admin-panel">
+            <h2>📋 Candidate Results</h2>
+
+            <!-- Search Input -->
+            <input type="text" id="searchInput" placeholder="🔍 Search by name..." class="search-box">
+
+            <!-- Candidate Table -->
+            <table class="admin-table" id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>
+                            <form method="POST" action="/delete" style="display:inline;">
+                                <input type="hidden" name="name" value="{{ row[0] }}">
+                                <button type="submit" class="btn-delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Buttons -->
+            <form method="GET" action="/export">
+                <button type="submit" class="export-btn">📤 Export to Excel</button>
+            </form>
+
+            <form method="POST" action="/delete_all">
+                <button type="submit" class="btn-delete-all">🗑️ Delete All Records</button>
+            </form>
+
+            <a href="{{ url_for('home') }}" class="export-btn" style="background-color: grey; margin-top: 20px;">🏠 Back to Home</a>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-row">
+            <div class="chart-container">
+                <canvas id="scoreChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Script -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('keyup', function () {
+    const filter = searchInput.value.toUpperCase();
+    const rows = document.querySelectorAll('#resultsTable tbody tr');
+    
+    rows.forEach(row => {
+        const nameCell = row.querySelector('td');
+        if (nameCell && nameCell.textContent.toUpperCase().includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+    </script>
+
+    <!-- Chart.js Script -->
+    <script>
+        // Score Bar Chart
+        const scores = {{ scores | tojson }};
+        const scoreCounts = {};
+        scores.forEach(score => {
+            scoreCounts[score] = (scoreCounts[score] || 0) + 1;
+        });
+
+        new Chart(document.getElementById('scoreChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(scoreCounts),
+                datasets: [{
+                    label: 'Number of Students',
+                    data: Object.values(scoreCounts),
+                    backgroundColor: '#007BFF'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Score Distribution'
+                    }
+                }
+            }
+        });
+
+        // Status Pie Chart
+        const statusList = {{ statuses | tojson }};
+        const statusCounts = { 'Selected': 0, 'Not Selected': 0 };
+        statusList.forEach(status => {
+            if (statusCounts[status] !== undefined) {
+                statusCounts[status]++;
+            }
+        });
+
+        new Chart(document.getElementById('statusChart'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(statusCounts),
+                datasets: [{
+                    label: 'Status',
+                    data: Object.values(statusCounts),
+                    backgroundColor: ['#28a745', '#dc3545']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Selection Status'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

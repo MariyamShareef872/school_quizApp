@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Time</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+</head>
+<body class="quiz-page">
+     <!-- 🔷 Animated Squares -->
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+     <div class="animated-square" style="left: 10%; background-color: #003366; animation-delay: 5s;"></div>
+     <div class="animated-square" style="left: 25%; background-color: #2b2b2b; animation-delay: 2s;"></div>
+     <div class="animated-square" style="left: 40%; background-color: #ffffff; animation-delay: 4s;"></div>
+     <div class="animated-square" style="left: 60%; background-color: #cccccc; animation-delay: 1s;"></div>
+     <div class="animated-square" style="left: 75%; background-color: #001f3f; animation-delay: 3s;"></div>
+ 
+    <div class="quiz-container">
+        <h2>📝 Welcome, {{ name }}</h2>
+        <div id="timer">⏳ Loading Timer...</div>
+
+        <form id="quizForm" method="POST" action="/quiz">
+            {% set current_subject = "" %}
+            {% for i in range(questions|length) %}
+                {% set subject = questions[i]['subject'] %}
+                
+                {% if subject != current_subject %}
+                    <h3 class="subject-heading">{{ subject }}</h3>
+                    {% set current_subject = subject %}
+                {% endif %}
+
+                <div class="question-block">
+                    <p><strong>Q{{ i+1 }}:</strong> {{ questions[i]['question'] }}</p>
+
+                    <label><input type="radio" name="q_{{ i }}" value="{{ questions[i]['option1'] }}"> {{ questions[i]['option1'] }}</label><br>
+                    <label><input type="radio" name="q_{{ i }}" value="{{ questions[i]['option2'] }}"> {{ questions[i]['option2'] }}</label><br>
+                    <label><input type="radio" name="q_{{ i }}" value="{{ questions[i]['option3'] }}"> {{ questions[i]['option3'] }}</label><br>
+                    <label><input type="radio" name="q_{{ i }}" value="{{ questions[i]['option4'] }}"> {{ questions[i]['option4'] }}</label>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="submit-btn">🚀 Submit Quiz</button>
+        </form>
+    </div>
+    <script>
+    // 🕒 Timer Logic
+        let totalTime = 60; // 1 minute
+        function startTimer() {
+            let timerDisplay = document.getElementById('timer');
+            let interval = setInterval(function () {
+                let minutes = Math.floor(totalTime / 60);
+                let seconds = totalTime % 60;
+                timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                totalTime--;
+
+                if (totalTime < 0) {
+                    clearInterval(interval);
+                    alert("⏰ Time is up!");
+                    document.getElementById("quizForm").submit(); // auto submit
+                }
+            }, 1000);
+        }
+
+        // 🚫 Prevent refresh to resubmit form
+        window.onload = function () {
+            startTimer();
+            if (window.performance && window.performance.navigation.type === 1) {
+                // If page is refreshed
+                window.location.href = "/already_attempted";
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>📝 Welcome {{ session['name'] }}! Good Luck!</h2>
+
+        <!-- Timer -->
+        <div class="timer-box">
+            ⏱ Time Left: <span id="timer">1:00</span>
+        </div>
+
+        <!-- Quiz Form -->
+        <form id="quizForm" method="POST" action="/submit_quiz">
+            {% for q in questions %}
+                <div class="question-block">
+                    <p><strong>Q{{ loop.index }}: {{ q.question }}</strong></p>
+                    {% for opt in q.options %}
+                        <label>
+                            <input type="radio" name="q{{ loop.index0 }}" value="{{ opt }}">
+                            {{ opt }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+                <hr>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </form>
+    </div>
+</body>
+</html>

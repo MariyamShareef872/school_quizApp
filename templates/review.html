@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Answers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
+</head>
+<body class="review-page">
+
+    <div class="review-container">
+        <h2>🔍 Answer Review - {{ name }}</h2>
+
+        {% for i in range(questions|length) %}
+            <div class="review-box">
+                <p><strong>Q{{ i+1 }}:</strong> {{ questions[i]['question'] }}</p>
+                <p><strong>Your Answer:</strong>
+                    {% if user_answers[i] == questions[i]['answer'] %}
+                        <span class="correct">✅ {{ user_answers[i] }}</span>
+                    {% else %}
+                        <span class="incorrect">❌ {{ user_answers[i] if user_answers[i] else "No Answer" }}</span>
+                        <br><strong>Correct Answer:</strong> <span class="correct-answer">{{ questions[i]['answer'] }}</span>
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+
+        <div class="back-btn">
+            <a href="{{ url_for('home') }}">🏠 Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
