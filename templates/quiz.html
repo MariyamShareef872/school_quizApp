@@ -66,32 +66,33 @@
         </form>
     </div>
     <script>
-    // 🕒 Timer Logic
-        let totalTime = 60; // 1 minute
-        function startTimer() {
-            let timerDisplay = document.getElementById('timer');
-            let interval = setInterval(function () {
-                let minutes = Math.floor(totalTime / 60);
-                let seconds = totalTime % 60;
-                timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-                totalTime--;
+    let totalTime = 60; // seconds
+    let submitted = false;
 
-                if (totalTime < 0) {
-                    clearInterval(interval);
-                    alert("⏰ Time is up!");
-                    document.getElementById("quizForm").submit(); // auto submit
-                }
-            }, 1000);
-        }
+    function startTimer() {
+        let timerDisplay = document.getElementById('timer');
+        let interval = setInterval(() => {
+            let minutes = Math.floor(totalTime / 60);
+            let seconds = totalTime % 60;
+            timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            totalTime--;
 
-        // 🚫 Prevent refresh to resubmit form
-        window.onload = function () {
-            startTimer();
-            if (window.performance && window.performance.navigation.type === 1) {
-                // If page is refreshed
-                window.location.href = "/already_attempted";
+            if (totalTime < 0 && !submitted) {
+                clearInterval(interval);
+                alert("⏰ Time is up!");
+                submitted = true;
+                document.getElementById("quizForm").submit();
             }
-        };
+        }, 1000);
+    }
+
+    window.onload = function () {
+        startTimer();
+        if (performance.navigation.type === 1 && !submitted) {
+            // Only redirect on refresh if not submitted yet
+            window.location.href = "/already_attempted";
+        }
+    };
     </script>
 </head>
 <body>
