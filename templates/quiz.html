@@ -94,32 +94,5 @@
         }
     };
     </script>
-</head>
-<body>
-    <div class="quiz-container">
-        <h2>📝 Welcome {{ session['name'] }}! Good Luck!</h2>
-
-        <!-- Timer -->
-        <div class="timer-box">
-            ⏱ Time Left: <span id="timer">1:00</span>
-        </div>
-
-        <!-- Quiz Form -->
-        <form id="quizForm" method="POST" action="/submit_quiz">
-            {% for q in questions %}
-                <div class="question-block">
-                    <p><strong>Q{{ loop.index }}: {{ q.question }}</strong></p>
-                    {% for opt in q.options %}
-                        <label>
-                            <input type="radio" name="q{{ loop.index0 }}" value="{{ opt }}">
-                            {{ opt }}
-                        </label><br>
-                    {% endfor %}
-                </div>
-                <hr>
-            {% endfor %}
-            <button type="submit" class="submit-btn">Submit Quiz</button>
-        </form>
-    </div>
 </body>
 </html>
