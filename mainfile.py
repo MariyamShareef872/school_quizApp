@@ -61,10 +61,6 @@ def quiz():
             questions.append(row)
 
     if request.method == 'POST':
-        # Only set this when the quiz is submitted!
-        if session.get('attempted'):
-            return render_template("already_attempted.html")
-
         score = 0
         user_answers = []
 
@@ -76,19 +72,17 @@ def quiz():
 
         status = 'Selected' if score >= 40 else 'Not Selected'
 
-        conn = sqlite3.connect('quiz.db')
-        cursor = conn.cursor()
         try:
+            conn = sqlite3.connect('quiz.db')
+            cursor = conn.cursor()
             cursor.execute("INSERT INTO candidates (name, score, status) VALUES (?, ?, ?)",
                            (session['username'], score, status))
             conn.commit()
-        except sqlite3.IntegrityError:
             conn.close()
-            return render_template("already_attempted.html")
-        conn.close()
+        except sqlite3.IntegrityError:
+            return render_template('already_attempted.html')
 
-        # ✅ Only set this AFTER quiz submitted successfully
-        session['attempted'] = True
+        # Store session for result and review
         session['score'] = score
         session['user_answers'] = user_answers
         session['questions'] = questions
@@ -96,8 +90,7 @@ def quiz():
 
         return redirect('/result')
 
-    # ❌ DO NOT set session['attempted'] here!
-    return render_template('quiz.html', questions=questions)
+    return render_template('quiz.html', questions=questions, name=session['username'])
 
 # Result Page
 @app.route('/result')
