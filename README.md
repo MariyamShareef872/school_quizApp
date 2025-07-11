@@ -79,13 +79,44 @@ Chart.js (for bar and pie charts)
 pandas (for Excel export)
 
 🧠 Why This Project?
-
 This project was built to demonstrate:
+
 Flask-based web application structure
 Quiz logic and session management
 Real-time user experience with auto-submit timer
 CSV/Database integration in Python
 Admin interface with CRUD, visualization, and export features
+
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+![Home](screenshots/home_page.png)
+
+### 🔐 Candidate Login
+![Login](screenshots/candidate_login.png)
+
+### ❌ Already Attempted
+![Review](screenshots/already_attempted.png)
+
+### 📝 Quiz Page (with Timer)
+![Quiz](screenshots/quiz.png)
+
+### 📊 Result Page
+![Result](screenshots/result.png)
+
+### 🔁 Review Answers
+![Review](screenshots/review.png)
+
+### 🔐 Admin Panel
+![Admin](screenshots/admin_login.png)
+
+### 🛡️ Admin Panel
+![Admin](screenshots/admin_panel.png)
+
+### 📈 Admin Charts
+![Charts](screenshots/adminpanel_graph.png)
 
 **Perfect for:**
 
